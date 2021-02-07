@@ -28,16 +28,13 @@ public class CounterServiceImpl implements CounterService {
     @Override
     @Transactional
     public Long incrementCounter() {
-        try {
             Optional<Counter> byId = counterRepository.findById(1L);
             if (byId.isPresent()) {
                 Counter counter = byId.get();
                 counter.setCounter(counter.getCounter() + 1);
                 return counter.getCounter();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         return null;
        }
 }
